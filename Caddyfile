@@ -1,4 +1,4 @@
-{$SITE_HOST}
+:80
 
 root * /srv
 file_server
