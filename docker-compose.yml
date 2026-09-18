@@ -1,30 +1,10 @@
 services:
-  web:
+  heypizza:
     image: caddy:2-alpine
+    container_name: heypizza-madrid
     restart: unless-stopped
     ports:
-      - "80:80"
-      - "443:443"
-    environment:
-      - SITE_HOST=${SITE_HOST:-:80}
+      - "${HEYPIZZA_PORT:-8088}:80"
     volumes:
       - ./index.html:/srv/index.html:ro
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
-      - caddy_data:/data
-volumes:
-  caddy_data:
-services:
-  web:
-    image: caddy:2-alpine
-    restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
-    environment:
-      - SITE_HOST=${SITE_HOST:-:80}
-    volumes:
-      - ./index.html:/srv/index.html:ro
-      - ./Caddyfile:/etc/caddy/Caddyfile:ro
-      - caddy_data:/data
-volumes:
-  caddy_data:
